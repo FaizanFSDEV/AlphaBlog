@@ -1,0 +1,24 @@
+
+<%= form_with model: @user do |f| %>
+
+    <div class="form-group">
+     <%= f.label :username %>
+     <%= f.text_field :username, class:"form-control", placeholder:"Username", autofocus: true %>
+    </div>
+
+    <div class="form-group">
+     <%= f.label :email %>
+     <%= f.text_field :email, class:"form-control", placeholder:"Email", autofocus: true %>
+    </div>
+
+    <div class="form-group">
+     <%= f.label :password %>
+     <%= f.text_field :password, class:"form-control", placeholder:"Password", autofocus: true %>
+    </div>
+
+    <div class="form-group">
+    <%= f.submit(@user.new_record? ? "Sign Up" : "Update", class:"btn btn-primary") %>
+    <%= link_to "Back", root_path , class: "btn btn-dark"%>
+    </div>
+
+<% end %>

@@ -1,0 +1,12 @@
+<h1 class="center"><%= "Category: " + @category.name %></h1>
+
+<div class="py-1"></div>
+
+<% if logged_in? and current_user.admin? %>
+    <div class="center">
+    <span class="badge"><%= link_to 'Edit Category Name', edit_category_path(@category) %></span>
+    </div>
+    <div class="py-1"></div>
+<% end %>
+
+<%= render 'articles/article', obj: @category_articles %> 

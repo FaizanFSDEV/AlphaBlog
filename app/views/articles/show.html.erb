@@ -1,0 +1,30 @@
+<div class="card text-center">
+  <div class="card-header">Showing Selected Article</div>
+  <div class="card-body">
+    <%= link_to gravatar_for(@article.user), user_path(@article.user) %>
+    <h3 class="card-text"><%= link_to @article.user.username, user_path(@article.user) %></h3>
+    <%= pluralize(@article.user.articles.count, "article") if @article.user.articles %>
+  </div>
+  <hr class="my-1">
+  <div class="card-body">
+  
+    <h1 class="card-title"><%= @article.title %></h1>
+    <p class="card-text"><%= @article.description %></p>
+
+    <% if @article.categories.any? %>
+     <p>Categories: <%= render @article.categories %></p>
+    <% end %>
+
+    <% if logged_in? && (current_user == @article.user and current_user.admin?) %>
+    <%= link_to "Edit", edit_article_path, class:"btn btn-primary" %>
+    <% end %>
+
+    <%= link_to "Back", articles_path, class: "btn btn-dark" %>
+
+  </div>
+  <div class="card-footer text-muted">
+    Created by: <%= @article.user.username%> | 
+    Created at: <%= time_ago_in_words(@article.created_at) %> ago |
+    Updated at: <%= time_ago_in_words(@article.updated_at) %> ago
+  </div>
+</div>

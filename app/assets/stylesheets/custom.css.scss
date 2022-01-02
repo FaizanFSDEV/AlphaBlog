@@ -1,0 +1,38 @@
+@import 'bootstrap/dist/css/bootstrap';
+
+.center{
+    text-align: center;
+}
+
+.jumbotron{
+    background-image: asset-url('rails.png');
+    background-size: cover;
+}
+
+ .jumbotron h1 {
+     color: #fff;
+     text-align: center;
+     margin-bottom: 30px;
+     letter-spacing: -1px;
+     font-weight: bold;
+     background-color: rgb(240, 16, 16);
+ }
+
+ .btn-xlarge{
+     font-size: 1.7em;
+     background-color: black;
+ }
+
+ .footer{
+     margin-top: 45px;
+     padding-top: 5px;
+     border-top: 1px solid #eaeaea;
+     color: #777
+ }
+
+ .badge{
+     background-color: #CEF6F5;
+     text-transform: uppercase;
+     font-weight: bold;
+     margin-right: 5px;
+ }

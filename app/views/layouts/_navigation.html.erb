@@ -1,0 +1,74 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <%= link_to "ALPHA BLOG", root_path, class: "navbar-brand"%>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <%= link_to "Articles", articles_path, class: "nav-link"%>
+      </li>
+      <li class="nav-item dropdown">
+
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+          <a><%= link_to "All Categories", categories_path, class: "dropdown-item"%></a>
+          <% Category.all.each do |category| %>
+          <a><%= link_to "#{category.name}", category_path(category), class: "dropdown-item"%></a>
+          <% end %>
+          <% if logged_in? and current_user.admin? %>
+          <div class="dropdown-divider"></div>
+          <a><%= link_to "Create new category", new_category_path, class: "dropdown-item"%></a>
+          <% end %>
+
+        </div>
+      </li>
+      <% if logged_in? %>
+                        <li class="nav-item">
+                          <%= link_to "New Article", new_article_path, class: "nav-link"%>
+                        </li>
+                        <li class="nav-item">
+                          <%= link_to "Users", users_path, class: "nav-link"%>
+                        </li>
+                        <li class="nav-item">
+                          <%= link_to "Profile", user_path(current_user), class: "nav-link"%>
+                        </li>
+                        <li class="nav-item">
+                        <% if current_user.admin? %>
+                          <span class="badge badge-light">Admin</span>
+                        <% end %>
+                        </li>
+                        <li class="nav-item">
+                          <%= link_to "Edit Profile", edit_user_path(current_user), class: "nav-link"%>
+                        </li>
+                        <li class="nav-item">
+                          <%= link_to "Logout", logout_path, method: :delete, class: "nav-link"%>
+                        </li>
+      <% else %>
+                        <li class="nav-item">
+                          <%= link_to "Signup", signup_path, class: "nav-link"%>
+                        </li>
+                        <li class="nav-item">
+                          <%= link_to "Login", login_path, class: "nav-link"%>
+                        </li>      
+      <% end %>
+    </ul>
+    
+    <form class="form-inline my-2 my-lg-0">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+
+  </div>
+</nav>
+
+
+
+
+
+    
+
+
+

@@ -1,0 +1,31 @@
+<% obj.each do |article| %>
+
+<div class="card text-center">
+  <div class="card-body">
+    <h1 class="card-title"><%= link_to article.title, article_path(article) %></h1>
+    <p class="card-text"><%= article.description %></p>
+  </div>
+
+  <% if article.categories.any? %>
+   <p>Categories: <%= render article.categories %></p>
+  <% end %>
+
+  <% if logged_in? && (current_user == article.user || current_user.admin?) %>
+  <div class="card-body border-top">
+     <%= link_to "Edit", edit_article_path(article), class:"btn btn-dark" %>
+     <%= link_to "Delete", article_path(article), method: :delete,
+                                                  data: {confirm: 'Are you sure?'},
+                                                  class:"btn btn-danger" %>
+  </div>
+  <% end %>
+  <div class="card-footer text-muted">
+    Created by: <%= article.user.username%> | 
+    Created at: <%= time_ago_in_words(article.created_at) %> ago |
+    Updated at: <%= time_ago_in_words(article.updated_at) %> ago 
+  </div>
+</div>
+
+<div class="py-2"></div>
+
+<% end %>
+
